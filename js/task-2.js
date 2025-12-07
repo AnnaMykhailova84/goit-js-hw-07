@@ -25,19 +25,38 @@ const images = [
   }
 ];
 
+
+// const galleryEl = document.querySelector('ul.gallery');
+// // console.log(galleryEl);
+// const fragmentEl = document.createDocumentFragment();
+
+// const imagesMarkup = images.map(image => {
+//   const liEl = document.createElement('li');
+//   const imgEl = document.createElement('img');
+//   imgEl.setAttribute('src', image.url);
+//   imgEl.setAttribute('alt', image.alt);
+//   imgEl.classList.add('gallery-img');
+//   liEl.classList.add('gallery-item');
+//   liEl.append(imgEl);
+//   fragmentEl.append(liEl);
+// });
+
+// galleryEl.append(fragmentEl);
+
+
+// ===================================
+
+
 const galleryEl = document.querySelector('ul.gallery');
-// console.log(galleryEl);
-const fragmentEl = document.createDocumentFragment();
 
-const imagesMarkup = images.map(image => {
-  const liEl = document.createElement('li');
-  const imgEl = document.createElement('img');
-  imgEl.setAttribute('src', image.url);
-  imgEl.setAttribute('alt', image.alt);
-  imgEl.classList.add('gallery-img');
-  liEl.classList.add('gallery-item');
-  liEl.append(imgEl);
-  fragmentEl.append(liEl);
-});
+const imagesMarkup = images
+  .map(({ url, alt }) => {
+    return `
+      <li class="gallery-item">
+        <img class="gallery-img" src="${url}" alt="${alt}">
+      </li>
+    `;
+  })
+  .join("");
 
-galleryEl.append(fragmentEl);
+galleryEl.insertAdjacentHTML("beforeend", imagesMarkup);
